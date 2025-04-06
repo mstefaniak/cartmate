@@ -35,7 +35,7 @@ A collaborative shopping list app built with **React Native** and **Supabase**, 
 
 ## 📲 Tech Stack
 
-- **Frontend**: [React Native](https://reactnative.dev/)  
+- **Frontend**: [TypeScript] + [React Native](https://reactnative.dev/)  
 - **Backend / Realtime / Auth / Storage**: [Supabase](https://supabase.com/)
 
 ---
