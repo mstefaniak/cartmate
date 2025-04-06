@@ -1,12 +1,12 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * Below are the colors that are used in the app.
  */
 
+// Original theme colors
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
-export const Colors = {
+export const ExpoColors = {
   light: {
     text: '#11181C',
     background: '#fff',
@@ -23,4 +23,22 @@ export const Colors = {
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
   },
+};
+
+// CartMate theme colors
+export default {
+  // Primary Colors
+  primary: '#4CAF50', // Green
+  secondary: '#FFEB3B', // Yellow
+  
+  // Neutral Colors
+  white: '#FFFFFF', // White
+  lightGray: '#F5F5F5', // Light Gray
+  darkGray: '#212121', // Dark Gray
+  mediumGray: '#757575', // Medium Gray
+  
+  // Feedback Colors
+  error: '#F44336', // Red
+  warning: '#FF9800', // Orange
+  success: '#8BC34A', // Light Green
 };
