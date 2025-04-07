@@ -36,6 +36,10 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "supabaseUrl": "Your Supabase URL will be accessed from app.config.js",
+      "supabaseAnonKey": "Your Supabase Anon Key will be accessed from app.config.js"
     }
   }
 }

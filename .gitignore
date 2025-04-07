@@ -37,3 +37,11 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+# Add or ensure .env files are ignored
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production

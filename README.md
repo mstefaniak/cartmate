@@ -42,6 +42,16 @@ A collaborative shopping list app built with **React Native** and **Supabase**, 
 - **Frontend**: [TypeScript](https://www.typescriptlang.org/) + [React Native](https://reactnative.dev/)
 - **Backend / Realtime / Auth / Storage**: [Supabase](https://supabase.com/)
 
+### Coding guideline
+
+- do not use semicolons
+- use TypeScript everywhere
+- do not import React if not necessary
+- preffer `const` over `function`
+- do not use default exports and imports
+- use relative paths with @ for imports
+- Typescript `any` is not allowed
+
 ---
 
 ## Colors

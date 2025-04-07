@@ -40,8 +40,8 @@ We've set up the Cartmate shopping list app with the following components:
 2. Go to Project Settings > API to get your project URL and anon key
 3. Create a `.env` file in the project root with the following variables:
    ```
-   EXPO_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
-   EXPO_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   SUPABASE_URL=https://your-project-id.supabase.co
+   SUPABASE_ANON_KEY=your-anon-key
    ```
 
 ### Setting up the Database Schema
