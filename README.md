@@ -13,16 +13,17 @@ A collaborative shopping list app built with **React Native** and **Supabase**, 
   Only one active shopping list is visible at any time, ensuring clarity and focus during shopping.
 
 - **List Archiving & Rotation**  
-  Once the current list is completed, it gets archived automatically and a new list titled *“Next List”* is generated for future use.
+  Once the current list is completed, it gets archived automatically and a new list titled _“Next List”_ is generated for future use.
 
 - **Item Categorization**  
   Products are grouped into categories such as:
-  - 🥛 Dairy  
-  - 🥖 Bakery  
-  - 🧼 Household Supplies  
-  - 🥩 Meat & Fish  
-  - 🥬 Vegetables & Fruits  
-  - 🧃 Beverages  
+
+  - 🥛 Dairy
+  - 🥖 Bakery
+  - 🧼 Household Supplies
+  - 🥩 Meat & Fish
+  - 🥬 Vegetables & Fruits
+  - 🧃 Beverages
   - ➕ Others (customizable)
 
 - **Mark Items as Purchased**  
@@ -31,11 +32,14 @@ A collaborative shopping list app built with **React Native** and **Supabase**, 
 - **Smart Suggestions**  
   Autocomplete and suggest frequently purchased products for faster entry.
 
+- **Languages**
+  The base language should be English, but it also should support Polish.
+
 ---
 
 ## 📲 Tech Stack
 
-- **Frontend**: [TypeScript] + [React Native](https://reactnative.dev/)  
+- **Frontend**: [TypeScript](https://www.typescriptlang.org/) + [React Native](https://reactnative.dev/)
 - **Backend / Realtime / Auth / Storage**: [Supabase](https://supabase.com/)
 
 ---
@@ -70,13 +74,12 @@ Success Color:
 
 #8BC34A (Light Green) — When an item is marked as purchased.
 
-
-
 ---
 
 ## 📐 Wireframes (Text-based)
 
 1. **Home Screen – Active List**
+
    - 🧑 Username (top right)
    - 📋 List Title: "Next List"
    - 🛍️ Item List (grouped by categories)
@@ -86,6 +89,7 @@ Success Color:
    - 🔔 Notification Bell (for updates)
 
 2. **Add Item Modal**
+
    - 📝 Input: Product Name
    - 📂 Dropdown: Category
    - 💡 Autocomplete Suggestions (e.g., Milk, Eggs, Butter)
@@ -111,44 +115,51 @@ Success Color:
 - I want to see categories marked both with color and with icons.
 - I want frequently bought items to be suggested automatically.
 - I want to archive the current list once it's done and start a new one.
-- I want to confirm the list archivation when the last item on the list is marked as purchased
+- I want to confirm the list archiving when the last item on the list is marked as purchased
 - I want to be able to archive the list manually when not all the items are marked as purchased
+- I want to be able to set items quantity. I want to clearly see the quantities set by other users.
 
 ---
 
 ## 🧠 Data Model (Simplified)
 
 ### `users`
-| Field      | Type    | Description        |
-|------------|---------|--------------------|
-| id         | UUID    | Primary key        |
-| name       | String  | User name          |
-| email      | String  | Auth email         |
+
+| Field | Type   | Description |
+| ----- | ------ | ----------- |
+| id    | UUID   | Primary key |
+| name  | String | User name   |
+| email | String | Auth email  |
 
 ### `shopping_lists`
-| Field       | Type      | Description              |
-|-------------|-----------|--------------------------|
-| id          | UUID      | Primary key              |
-| title       | String    | e.g. "Next List"         |
-| is_active   | Boolean   | Current list flag        |
-| created_at  | Timestamp | List creation time       |
+
+| Field      | Type      | Description        |
+| ---------- | --------- | ------------------ |
+| id         | UUID      | Primary key        |
+| title      | String    | e.g. "Next List"   |
+| is_active  | Boolean   | Current list flag  |
+| created_at | Timestamp | List creation time |
 
 ### `items`
-| Field        | Type      | Description                         |
-|--------------|-----------|-------------------------------------|
-| id           | UUID      | Primary key                         |
-| name         | String    | Item name                           |
-| category     | String    | e.g., "Dairy", "Bakery"             |
-| added_by     | UUID      | `users.id`                          |
-| added_at     | Timestamp | Time added                          |
-| is_purchased | Boolean   | Marked as purchased                 |
-| list_id      | UUID      | FK to `shopping_lists.id`           |
+
+| Field         | Type      | Description               |
+| ------------- | --------- | ------------------------- |
+| id            | UUID      | Primary key               |
+| name          | String    | Item name                 |
+| category      | String    | e.g., "Dairy", "Bakery"   |
+| added_by      | UUID      | `users.id`                |
+| added_at      | Timestamp | Time added                |
+| is_purchased  | Boolean   | Marked as purchased       |
+| list_id       | UUID      | FK to `shopping_lists.id` |
+| quantity      | Number    | Items quantity            |
+| quantity_unit | String    | e.g., "Piece", "Kilogram" |
 
 ---
 
 ## 📡 API Design (Supabase RPC + REST)
 
 ### `GET /active-list`
+
 > Fetch current active shopping list with grouped items.
 
 ```json
@@ -156,8 +167,22 @@ Success Color:
   "id": "uuid",
   "title": "Next List",
   "items": {
-    "Dairy": [ { "name": "Milk", "is_purchased": true, "added_by": "Anna", "added_at": "..." } ],
-    "Bakery": [ { "name": "Bread", "is_purchased": false, "added_by": "Tom", "added_at": "..." } ]
+    "Dairy": [
+      {
+        "name": "Milk",
+        "is_purchased": true,
+        "added_by": "Anna",
+        "added_at": "..."
+      }
+    ],
+    "Bakery": [
+      {
+        "name": "Bread",
+        "is_purchased": false,
+        "added_by": "Tom",
+        "added_at": "..."
+      }
+    ]
   }
 }
 ```
@@ -165,6 +190,7 @@ Success Color:
 ---
 
 ### `POST /items`
+
 > Add a new item to the list
 
 ```json
@@ -178,6 +204,7 @@ Success Color:
 ---
 
 ### `PATCH /items/:id`
+
 > Mark an item as purchased or edit its category/name.
 
 ```json
@@ -189,6 +216,7 @@ Success Color:
 ---
 
 ### `POST /lists/archive`
+
 > Archive the current list and create a new one.
 
 ```json
@@ -200,18 +228,17 @@ Success Color:
 ---
 
 ### `GET /suggestions?query=mil`
+
 > Autocomplete suggestions for items starting with "mil".
 
 ```json
-[
-  { "name": "Milk" },
-  { "name": "Millet" }
-]
+[{ "name": "Milk" }, { "name": "Millet" }]
 ```
 
 ---
 
 ### `GET /history`
+
 > Get archived shopping lists (summary view).
 
 ```json
