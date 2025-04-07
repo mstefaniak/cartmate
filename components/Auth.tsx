@@ -1,33 +1,36 @@
-import React, { useState } from 'react';
-import { Alert, StyleSheet, View, TextInput, Button, Text } from 'react-native';
-import { supabase } from '../lib/supabase';
+import { useState } from 'react'
+import { Alert, StyleSheet, View, TextInput, Button, Text } from 'react-native'
+import { supabase } from '../lib/supabase'
 
-export default function Auth() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+export const Auth = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function signInWithEmail() {
-    setLoading(true);
+    setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
-    });
+    })
 
-    if (error) Alert.alert(error.message);
-    setLoading(false);
+    if (error) Alert.alert(error.message)
+    setLoading(false)
   }
 
   async function signUpWithEmail() {
-    setLoading(true);
+    setLoading(true)
     const { error } = await supabase.auth.signUp({
       email: email,
       password: password,
-    });
+    })
 
-    if (error) Alert.alert(error.message);
-    else Alert.alert('Check your email for the confirmation link!');
-    setLoading(false);
+    if (error) {
+      Alert.alert(error.message)
+    } else {
+      Alert.alert('Check your email for the confirmation link!')
+    }
+    setLoading(false)
   }
 
   return (
@@ -54,13 +57,21 @@ export default function Auth() {
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
+        <Button
+          title="Sign in"
+          disabled={loading}
+          onPress={() => signInWithEmail()}
+        />
       </View>
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
+        <Button
+          title="Sign up"
+          disabled={loading}
+          onPress={() => signUpWithEmail()}
+        />
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -87,4 +98,4 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: 'white',
   },
-}); 
+})

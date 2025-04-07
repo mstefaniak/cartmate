@@ -58,6 +58,8 @@ export interface Database {
           added_at: string;
           is_purchased: boolean;
           list_id: string;
+          quantity: number;
+          quantity_unit: string;
         };
         Insert: {
           id?: string;
@@ -67,6 +69,8 @@ export interface Database {
           added_at?: string;
           is_purchased?: boolean;
           list_id: string;
+          quantity?: number;
+          quantity_unit?: string;
         };
         Update: {
           id?: string;
@@ -76,6 +80,8 @@ export interface Database {
           added_at?: string;
           is_purchased?: boolean;
           list_id?: string;
+          quantity?: number;
+          quantity_unit?: string;
         };
       };
     };

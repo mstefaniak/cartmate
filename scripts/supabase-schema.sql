@@ -45,7 +45,9 @@ CREATE TABLE IF NOT EXISTS public.items (
   added_by UUID NOT NULL REFERENCES public.users(id),
   added_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   is_purchased BOOLEAN DEFAULT false,
-  list_id UUID NOT NULL REFERENCES public.shopping_lists(id) ON DELETE CASCADE
+  list_id UUID NOT NULL REFERENCES public.shopping_lists(id) ON DELETE CASCADE,
+  quantity INTEGER DEFAULT 1,
+  quantity_unit TEXT DEFAULT 'piece'
 );
 
 -- Create RLS policy for items table
