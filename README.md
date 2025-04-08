@@ -42,16 +42,6 @@ A collaborative shopping list app built with **React Native** and **Supabase**, 
 - **Frontend**: [TypeScript](https://www.typescriptlang.org/) + [React Native](https://reactnative.dev/)
 - **Backend / Realtime / Auth / Storage**: [Supabase](https://supabase.com/)
 
-### Coding guideline
-
-- do not use semicolons
-- use TypeScript everywhere
-- do not import React if not necessary
-- preffer `const` over `function`
-- do not use default exports and imports
-- use relative paths with @ for imports
-- Typescript `any` is not allowed
-
 ---
 
 ## Colors
@@ -93,8 +83,8 @@ Success Color:
    - 🧑 Username (top right)
    - 📋 List Title: "Next List"
    - 🛍️ Item List (grouped by categories)
-     - ✅ [x] Milk (added by Anna, 5 min ago)
-     - ⬜ Bread (added by Tom, just now)
+     - ✅ [x] Milk 1L (added by Anna, 5 min ago)
+     - ⬜ Bread 1pc (added by Tom, just now)
    - ➕ Add Item input + Suggestions dropdown
    - 🔔 Notification Bell (for updates)
 
@@ -103,11 +93,12 @@ Success Color:
    - 📝 Input: Product Name
    - 📂 Dropdown: Category
    - 💡 Autocomplete Suggestions (e.g., Milk, Eggs, Butter)
+   - Quantity + Unit
    - ➕ Submit button
 
 3. **History / Archived Lists**
    - 📆 List of past shopping lists
-   - 🕒 Timestamp
+   - 🕒 Timestamp (when archived)
    - 👁️ View-only mode
 
 ---
@@ -149,6 +140,7 @@ Success Color:
 | title      | String    | e.g. "Next List"   |
 | is_active  | Boolean   | Current list flag  |
 | created_at | Timestamp | List creation time |
+| archived_at| Timestamp | List archived time |
 
 ### `items`
 
@@ -182,7 +174,9 @@ Success Color:
         "name": "Milk",
         "is_purchased": true,
         "added_by": "Anna",
-        "added_at": "..."
+        "added_at": "...",
+        "quantity": 2,
+        "quantity_unit": "liter",
       }
     ],
     "Bakery": [
@@ -190,7 +184,9 @@ Success Color:
         "name": "Bread",
         "is_purchased": false,
         "added_by": "Tom",
-        "added_at": "..."
+        "added_at": "...",
+        "quantity": 1,
+        "quantity_unit": "piece",
       }
     ]
   }
@@ -207,6 +203,8 @@ Success Color:
 {
   "name": "Butter",
   "category": "Dairy",
+  "quantity": 1,
+  "quantity_unit": "piece",
   "added_by": "user_id"
 }
 ```
@@ -257,3 +255,18 @@ Success Color:
   ...
 ]
 ```
+
+## Project phases
+
+- 1. Create App skeleton
+
+-- 1.1. Create empty React Native project with TypeScript
+-- 1.2. Extend with Router
+-- 1.3. Add pages structure and routing (just empty pages with some titles)
+
+- 2. Fill the pages with mocks
+
+-- 1.1. Build the list view with mocked data
+-- 
+
+- 3. Add interactions
